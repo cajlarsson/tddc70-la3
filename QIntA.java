@@ -1,5 +1,5 @@
 final class QIntA {
-	int[] a;
+    public int[] a;
 
 	public QIntA() {
 	}
