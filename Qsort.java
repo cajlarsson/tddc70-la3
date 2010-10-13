@@ -4,16 +4,13 @@ class Qsort
    // After execution a[x] <= a[y] <= a[z] should hold.
    static void sort3(QIntA a, int x, int y, int z) 
    {
-      int intX = a.get(x);
-      int intY = a.get(y);
-      int intZ = a.get(z);
       
-      if (intY < intX)
-	 a.swap(y , x);
-      if (intZ < intY)
+      if (a.get(y) < a.get(x))
+	  a.swap(y,x);
+      if (a.get(z) < a.get(y))
 	 a.swap(z,y);
-      if (intY < intX)
-	 a.swap(y,x);
+      if (a.get(y) < a.get(x))
+	  a.swap(y,x);
    }
    
 
@@ -21,25 +18,21 @@ class Qsort
    {
       int size = right - left  +1;
       
-      if ( size  < 3)
+      if ( size < m)
       {
-	  return;
+	      sort3(a,left,left+1, right);
+	      return;
       } 
-      /*      
-      if (size == 3)
-      {
- 	 sort3(a,left,left+1, right);
- 	 return;
-	 }	*/ 
-      
+          
       int middle = (right + left) /2;
-      
+
       sort3(a, left,  middle ,right);
       
       int newPiv = partition(a,left,right,middle); 
 
+      quickSort(a, newPiv , right ,m);      
       quickSort(a, left, newPiv ,  m);
-      quickSort(a, newPiv, right ,m);
+
       
       //insertionSort(a,left,right);
    }
@@ -55,7 +48,7 @@ class Qsort
       int piv = a.get(pivot);
       a.swap(pivot, right);
       int storeIndex = left;
-      for (int i= left ; i < (right -1); i++)
+      for (int i= left ; i < right-1  ; i++)
       {
 	 if (a.get(i) <= piv)
 	 {
@@ -68,16 +61,3 @@ class Qsort
    }
 }
    
-/*
-
-function partition(array, left, right, pivotIndex)
-pivotValue := array[pivotIndex]
-swap array[pivotIndex] and array[right] // Move pivot to end
-storeIndex := left
-for i from left to right - 1
-   if array[i] ≤ pivotValue
-     swap array[i] and array[storeIndex]
-     storeIndex := storeIndex + 1
-swap array[storeIndex] and array[right] // Pivot to final place
-return storeIndex
-*/
