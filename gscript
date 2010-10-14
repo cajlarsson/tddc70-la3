@@ -2,6 +2,6 @@
 LC_ALL=C
 export LC_ALL
 java QsortTest < random | gawk '{ print $3, $6; fflush() }' | tee qsort.dat
-gnuplot /home/TDDC70/bin/qsort.gnupl
+gnuplot qsort.gnupl
 rm qsort.dat
-ghostview qsort.ps
+evince qsort.ps

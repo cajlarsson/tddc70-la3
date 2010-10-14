@@ -1,0 +1,7 @@
+set terminal postscript
+set output 'qsort.ps'
+set title "Qsort timing data"
+set xlabel "m"
+set ylabel "time (ms)"
+set autoscale
+plot 'qsort.dat' with linespoints

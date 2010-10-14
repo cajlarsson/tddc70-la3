@@ -39,29 +39,35 @@ class Qsort
 
    public static void insertionSort(QIntA a, int low, int high) 
    {
-      for (int i = low; i < high; i++)
+      for (int i = low+1; i < high; i++)
       {
-	 insert(a,low,i,i);
-      }
-   }
-
-   private static void insert(QIntA a, int low, int high, int value)
-   {
-      for (int i = low; i < high -1; i++)
-      {
-	 if (a.get(value) >= a.get(i))
+	 int j = i;
+	 int val = a.get(i);
+	 while ((j > low) && (a.get(j-1) > val))
 	 {
-	    a.swap(value,i);
-	    for (int j = i; j < high -1  ; j++)
-	    {
-	       a.swap(j,j+1);
-	    }
-	    return;
+	    a.set(j,a.get(j-1));
+	    j--;
 	 }
+	 a.set(j,val);
       }
-	 
-
+      
    }
+/*
+
+ public static void insertion_srt(int array[], int n){
+    for (int i = 1; i < n; i++){
+      int j = i;
+      int B = array[i];
+      while ((j > 0) && (array[j-1] > B)){
+        array[j] = array[j-1];
+        j--;
+      }
+      array[j] = B;
+    }
+  }
+  }*/
+    
+    
 	
    private static int partition ( QIntA a, int left, int right, int pivot)
    {
